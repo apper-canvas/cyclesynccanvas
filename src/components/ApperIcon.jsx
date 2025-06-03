@@ -1,14 +1,42 @@
-import * as Icons from 'lucide-react';
+import { 
+  Home, 
+  Calendar, 
+  BarChart3, 
+  User, 
+  Heart, 
+  Moon, 
+  Sun, 
+  Menu, 
+  X,
+  Plus,
+  Trash2,
+  Pill,
+  Stethoscope
+} from 'lucide-react'
 
-const ApperIcon = ({ name, ...props }) => {
-    let IconComponent = Icons[name];
+const icons = {
+  Home,
+  Calendar,
+  BarChart3,
+  User,
+User,
+  Heart,
+  Moon,
+  Sun,
+  Menu,
+  X,
+  Plus,
+  Trash2,
+  Pill,
+  Stethoscope
+}
 
-    if (!IconComponent) {
-        console.warn(`Icon "${name}" does not exist in lucide-react`);
-        IconComponent = Icons['Smile'];
-    }
-
-    return <IconComponent {...props} />;
-};
-
-export default ApperIcon;
+export default function ApperIcon({ name, className = "w-6 h-6", ...props }) {
+  const IconComponent = icons[name]
+  
+  if (!IconComponent) {
+    return null
+  }
+  
+  return <IconComponent className={className} {...props} />
+}

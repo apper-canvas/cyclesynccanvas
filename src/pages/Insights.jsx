@@ -111,10 +111,9 @@ export default function Insights() {
               >
                 <ApperIcon 
                   name={darkMode ? "Sun" : "Moon"} 
-                  className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" 
+className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" 
                 />
               </motion.button>
-</motion.button>
               
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -131,13 +130,14 @@ export default function Insights() {
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
+{/* Mobile Navigation Menu */}
         <AnimatePresence>
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
                 className="lg:hidden border-t border-pink-200/30 bg-white/80 backdrop-blur-sm"
               >
                 <div className="px-4 py-6 space-y-3">
@@ -155,13 +155,12 @@ export default function Insights() {
                       <ApperIcon name={item.icon} className="w-5 h-5" />
                       <span>{item.label}</span>
                     </Link>
-                  ))}
+))}
                 </div>
-</motion.div>
-            )}
-          </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.header>
-
       {/* Main Content */}
       <main className="relative px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="max-w-7xl mx-auto">
@@ -234,9 +233,9 @@ export default function Insights() {
 
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-className="cycle-card p-6 text-center"
+              className="cycle-card p-6 text-center"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <ApperIcon name="TrendingUp" className="w-8 h-8 text-white" />
@@ -255,9 +254,9 @@ className="cycle-card p-6 text-center"
               className="cycle-card p-6 text-center"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <ApperIcon name="Flower" className="w-8 h-8 text-white" />
+<ApperIcon name="Flower" className="w-8 h-8 text-white" />
               </div>
-<h3 className="text-3xl font-bold text-green-600 mb-1">
+              <h3 className="text-3xl font-bold text-green-600 mb-1">
                 {Math.ceil((cycleStats.fertileWindowStart - new Date()) / (1000 * 60 * 60 * 24))}
               </h3>
               <p className="text-sm text-gray-600">Days to Fertile Window</p>

@@ -201,17 +201,17 @@ setSelectedSymptomInfo(null)
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="sticky top-0 z-50 glass-effect border-b border-pink-200/30"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20">
+<div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
             <motion.div 
-              className="flex items-center space-x-3"
+              className="flex items-center space-x-2 sm:space-x-3"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg">
                 <ApperIcon name="Heart" className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <h1 className="text-xl sm:text-2xl font-bold gradient-text">CycleSync</h1>
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold gradient-text">CycleSync</h1>
             </motion.div>
             
             {/* Desktop Navigation */}
@@ -262,20 +262,20 @@ setSelectedSymptomInfo(null)
       </motion.header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-between mb-8">
-<div>
-              <h1 className="text-3xl sm:text-4xl font-bold gradient-text mb-2">How Are You Feeling?</h1>
-              <p className="text-gray-600 dark:text-gray-400">Share what you're experiencing and track your daily wellness</p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 sm:mb-8 space-y-3 sm:space-y-0">
+            <div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-2">How Are You Feeling?</h1>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Share what you're experiencing and track your daily wellness</p>
             </div>
-            <div className="text-right">
-              <p className="text-sm text-gray-500">Today</p>
-              <p className="text-lg font-semibold">{new Date().toLocaleDateString()}</p>
+            <div className="text-left sm:text-right">
+              <p className="text-xs sm:text-sm text-gray-500">Today</p>
+              <p className="text-base sm:text-lg font-semibold">{new Date().toLocaleDateString()}</p>
             </div>
           </div>
 
@@ -290,21 +290,21 @@ setSelectedSymptomInfo(null)
               <ApperIcon name="Smile" className="w-5 h-5 mr-2" />
               How are you feeling today?
             </h2>
-            <div className="grid grid-cols-5 gap-3">
+<div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
               {moods.map((mood) => (
                 <motion.button
                   key={mood.id}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setCurrentMood(mood.id)}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-3 sm:p-4 rounded-xl border-2 transition-all min-h-[80px] sm:min-h-[90px] ${
                     currentMood === mood.id
                       ? 'border-primary bg-primary/10'
                       : 'border-gray-200 hover:border-primary/50'
                   }`}
                 >
-                  <div className="text-2xl mb-2">{mood.emoji}</div>
-                  <div className="text-sm font-medium">{mood.label}</div>
+                  <div className="text-xl sm:text-2xl mb-1 sm:mb-2">{mood.emoji}</div>
+                  <div className="text-xs sm:text-sm font-medium">{mood.label}</div>
                 </motion.button>
               ))}
             </div>
@@ -321,32 +321,32 @@ setSelectedSymptomInfo(null)
                 className="cycle-card p-6"
               >
                 <h2 className="text-xl font-semibold mb-4">{category.name} Symptoms</h2>
-<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                   {category.symptoms.map((symptom) => (
-                    <div key={symptom.id} className="space-y-2">
+                    <div key={symptom.id} className="space-y-3">
                       <div className="relative">
-                        <div className="flex items-stretch gap-1">
+                        <div className="flex items-stretch gap-2">
                           <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={() => toggleSymptom(symptom.id)}
-                            className={`flex-1 p-3 rounded-xl border-2 transition-all ${
+                            className={`flex-1 p-4 sm:p-3 rounded-xl border-2 transition-all min-h-[60px] ${
                               selectedSymptoms[symptom.id]
                                 ? 'border-primary bg-primary/10'
                                 : 'border-gray-200 hover:border-primary/50'
                             }`}
                           >
-                            <div className="flex items-center space-x-2">
-                              <ApperIcon name={symptom.icon} className="w-4 h-4" />
-                              <span className="text-sm font-medium">{symptom.label}</span>
+                            <div className="flex items-center space-x-2 sm:space-x-3">
+                              <ApperIcon name={symptom.icon} className="w-5 h-5 sm:w-4 sm:h-4 flex-shrink-0" />
+                              <span className="text-sm sm:text-sm font-medium text-left">{symptom.label}</span>
                             </div>
                           </motion.button>
                           <button
                             onClick={() => openSymptomInfo(symptom.id, symptom.label)}
-                            className="p-3 rounded-xl border-2 border-gray-200 hover:border-primary/50 hover:bg-gray-50 transition-colors"
+                            className="p-4 sm:p-3 rounded-xl border-2 border-gray-200 hover:border-primary/50 hover:bg-gray-50 transition-colors min-h-[60px] flex items-center justify-center"
                             title="View cause & effect"
                           >
-                            <ApperIcon name="Info" className="w-4 h-4 text-gray-500" />
+                            <ApperIcon name="Info" className="w-5 h-5 sm:w-4 sm:h-4 text-gray-500" />
                           </button>
                         </div>
                       </div>
@@ -355,18 +355,18 @@ setSelectedSymptomInfo(null)
                         <motion.div
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: 'auto' }}
-                          className="flex justify-between text-xs"
+                          className="flex justify-between items-center text-xs sm:text-xs bg-gray-50 p-3 rounded-lg"
                         >
-                          <span>Intensity:</span>
-                          <div className="flex space-x-1">
+                          <span className="font-medium">Intensity:</span>
+                          <div className="flex space-x-2">
                             {[1, 2, 3, 4, 5].map((level) => (
                               <button
                                 key={level}
                                 onClick={() => updateSymptomIntensity(symptom.id, level)}
-                                className={`w-3 h-3 rounded-full border ${
+                                className={`w-6 h-6 sm:w-4 sm:h-4 rounded-full border-2 transition-all ${
                                   selectedSymptoms[symptom.id]?.intensity >= level
                                     ? `${getIntensityColor(level)} border-transparent`
-                                    : 'border-gray-300'
+                                    : 'border-gray-300 hover:border-gray-400'
                                 }`}
                               />
                             ))}
@@ -421,21 +421,21 @@ setSelectedSymptomInfo(null)
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
-            className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4"
+className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4"
           >
-            <div className="cycle-card p-4 text-center">
-              <div className="text-2xl font-bold text-primary">{Object.keys(selectedSymptoms).length}</div>
-              <div className="text-sm text-gray-600">Symptoms Today</div>
+            <div className="cycle-card p-4 sm:p-4 text-center">
+              <div className="text-xl sm:text-2xl font-bold text-primary">{Object.keys(selectedSymptoms).length}</div>
+              <div className="text-xs sm:text-sm text-gray-600">Symptoms Today</div>
             </div>
-            <div className="cycle-card p-4 text-center">
-              <div className="text-2xl font-bold text-secondary">
+            <div className="cycle-card p-4 sm:p-4 text-center">
+              <div className="text-xl sm:text-2xl font-bold text-secondary">
                 {currentMood ? moods.find(m => m.id === currentMood)?.emoji : '😐'}
               </div>
-              <div className="text-sm text-gray-600">Current Mood</div>
+              <div className="text-xs sm:text-sm text-gray-600">Current Mood</div>
             </div>
-            <div className="cycle-card p-4 text-center">
-              <div className="text-2xl font-bold text-purple-600">7</div>
-              <div className="text-sm text-gray-600">Day Streak</div>
+            <div className="cycle-card p-4 sm:p-4 text-center">
+              <div className="text-xl sm:text-2xl font-bold text-purple-600">7</div>
+              <div className="text-xs sm:text-sm text-gray-600">Day Streak</div>
             </div>
           </motion.div>
 </motion.div>
@@ -447,7 +447,7 @@ setSelectedSymptomInfo(null)
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/50 backdrop-blur-sm"
           onClick={closeSymptomInfo}
         >
           <motion.div
@@ -455,17 +455,17 @@ setSelectedSymptomInfo(null)
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-xl"
+            className="bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-xl mx-2 sm:mx-0"
           >
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <div className="flex items-start justify-between mb-4 sm:mb-6">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white pr-4 leading-tight">
                 {selectedSymptomInfo.label} - Cause & Effect
               </h2>
               <button
                 onClick={closeSymptomInfo}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="p-2 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex-shrink-0"
               >
-                <ApperIcon name="X" className="w-5 h-5" />
+                <ApperIcon name="X" className="w-5 h-5 sm:w-5 sm:h-5" />
               </button>
             </div>
 

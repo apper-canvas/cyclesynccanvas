@@ -1,25 +1,10 @@
-import { 
-  Home, 
-  Calendar, 
-  BarChart3, 
-  User, 
-  Heart, 
-  Moon, 
-  Sun, 
-  Menu, 
-  X,
-  Plus,
-  Trash2,
-  Pill,
-  Stethoscope
-} from 'lucide-react'
+import { Calendar, Pill, Stethoscope, Heart, Plus, Trash2, X, Menu, Sun, Moon, Home, BarChart3, User, Bell, Shield, Settings, TrendingUp, UserPlus, Check, Download } from 'lucide-react'
 
 const icons = {
   Home,
   Calendar,
   BarChart3,
   User,
-User,
   Heart,
   Moon,
   Sun,
@@ -28,7 +13,14 @@ User,
   Plus,
   Trash2,
   Pill,
-  Stethoscope
+  Stethoscope,
+  Bell,
+  Shield,
+  Settings,
+  TrendingUp,
+  UserPlus,
+  Check,
+  Download
 }
 
 export default function ApperIcon({ name, className = "w-6 h-6", ...props }) {

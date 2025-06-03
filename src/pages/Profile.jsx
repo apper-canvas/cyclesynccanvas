@@ -8,7 +8,17 @@ export default function Profile() {
   const [darkMode, setDarkMode] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
-  const [activeTab, setActiveTab] = useState('personal')
+const [activeTab, setActiveTab] = useState('personal')
+  const [isNewUser, setIsNewUser] = useState(false)
+  
+  const [createProfileData, setCreateProfileData] = useState({
+    name: '',
+    email: '',
+    dateOfBirth: '',
+    cycleLength: 28,
+    periodLength: 5,
+    healthGoals: []
+  })
   
   const [personalInfo, setPersonalInfo] = useState({
     name: 'Jane Doe',
@@ -98,6 +108,54 @@ export default function Profile() {
     if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
       toast.success('Account deletion request submitted. You will receive a confirmation email.')
     }
+}
+
+  const handleCreateProfile = () => {
+    // Validate required fields
+    if (!createProfileData.name || !createProfileData.email || !createProfileData.dateOfBirth) {
+      toast.error('Please fill in all required fields')
+      return
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(createProfileData.email)) {
+      toast.error('Please enter a valid email address')
+      return
+    }
+
+    // Validate cycle data
+    if (createProfileData.cycleLength < 21 || createProfileData.cycleLength > 45) {
+      toast.error('Cycle length should be between 21-45 days')
+      return
+    }
+
+    if (createProfileData.periodLength < 2 || createProfileData.periodLength > 10) {
+      toast.error('Period length should be between 2-10 days')
+      return
+    }
+
+    // Save profile data
+    setPersonalInfo({
+      name: createProfileData.name,
+      email: createProfileData.email,
+      dateOfBirth: createProfileData.dateOfBirth,
+      cycleLength: createProfileData.cycleLength,
+      periodLength: createProfileData.periodLength
+    })
+
+    setIsNewUser(false)
+    setActiveTab('personal')
+    toast.success('Profile created successfully! Welcome to CycleSync!')
+  }
+
+  const handleHealthGoalToggle = (goal) => {
+    setCreateProfileData(prev => ({
+      ...prev,
+      healthGoals: prev.healthGoals.includes(goal)
+        ? prev.healthGoals.filter(g => g !== goal)
+        : [...prev.healthGoals, goal]
+    }))
   }
 
   return (
@@ -221,7 +279,8 @@ export default function Profile() {
             >
               <div className="cycle-card p-4">
                 <nav className="space-y-2">
-                  {[
+{[
+                    { id: 'create', label: 'Create Profile', icon: 'UserPlus' },
                     { id: 'personal', label: 'Personal Info', icon: 'User' },
                     { id: 'notifications', label: 'Notifications', icon: 'Bell' },
                     { id: 'privacy', label: 'Privacy', icon: 'Shield' },
@@ -251,10 +310,141 @@ export default function Profile() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="lg:col-span-3"
+className="lg:col-span-3"
             >
               <div className="cycle-card p-6 sm:p-8">
                 <AnimatePresence mode="wait">
+                  {activeTab === 'create' && (
+                    <motion.div
+                      key="create"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="text-center mb-8">
+                        <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                          <ApperIcon name="UserPlus" className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-bold gradient-text mb-2">Welcome to CycleSync!</h3>
+                        <p className="text-gray-600">Let's set up your profile to get personalized cycle tracking</p>
+                      </div>
+
+                      <div className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                            <input
+                              type="text"
+                              value={createProfileData.name}
+                              onChange={(e) => setCreateProfileData(prev => ({ ...prev, name: e.target.value }))}
+                              placeholder="Enter your full name"
+                              className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-0 focus:outline-none"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                            <input
+                              type="email"
+                              value={createProfileData.email}
+                              onChange={(e) => setCreateProfileData(prev => ({ ...prev, email: e.target.value }))}
+                              placeholder="Enter your email"
+                              className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-0 focus:outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Date of Birth *</label>
+                          <input
+                            type="date"
+                            value={createProfileData.dateOfBirth}
+                            onChange={(e) => setCreateProfileData(prev => ({ ...prev, dateOfBirth: e.target.value }))}
+                            className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-0 focus:outline-none"
+                          />
+                        </div>
+
+                        <div className="bg-pink-50 rounded-xl p-6">
+                          <h4 className="font-semibold text-gray-800 mb-4">Cycle Information</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-2">Average Cycle Length (days)</label>
+                              <input
+                                type="number"
+                                min="21"
+                                max="45"
+                                value={createProfileData.cycleLength}
+                                onChange={(e) => setCreateProfileData(prev => ({ ...prev, cycleLength: parseInt(e.target.value) }))}
+                                className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-0 focus:outline-none"
+                              />
+                              <p className="text-xs text-gray-500 mt-1">Typically 21-45 days</p>
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 mb-2">Average Period Length (days)</label>
+                              <input
+                                type="number"
+                                min="2"
+                                max="10"
+                                value={createProfileData.periodLength}
+                                onChange={(e) => setCreateProfileData(prev => ({ ...prev, periodLength: parseInt(e.target.value) }))}
+                                className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-primary focus:ring-0 focus:outline-none"
+                              />
+                              <p className="text-xs text-gray-500 mt-1">Typically 2-10 days</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold text-gray-800 mb-4">Health Goals (Optional)</h4>
+                          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            {[
+                              'Track Fertility',
+                              'Monitor Symptoms',
+                              'Plan Pregnancy',
+                              'Manage PMS',
+                              'Track Mood',
+                              'General Health'
+                            ].map((goal) => (
+                              <motion.button
+                                key={goal}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                onClick={() => handleHealthGoalToggle(goal)}
+                                className={`p-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                                  createProfileData.healthGoals.includes(goal)
+                                    ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                }`}
+                              >
+                                {goal}
+                              </motion.button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                          <motion.button
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={handleCreateProfile}
+                            className="flex-1 px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                          >
+                            <ApperIcon name="Check" className="w-5 h-5 inline mr-2" />
+                            Create My Profile
+                          </motion.button>
+                          <motion.button
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() => setActiveTab('personal')}
+                            className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-semibold hover:border-primary hover:text-primary transition-all duration-200"
+                          >
+                            Skip for Now
+                          </motion.button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
                   {activeTab === 'personal' && (
                     <motion.div
                       key="personal"
@@ -443,7 +633,7 @@ export default function Profile() {
                             <ApperIcon name="Trash2" className="w-4 h-4 inline mr-2" />
                             Delete Account
                           </motion.button>
-                        </div>
+</div>
                       </div>
                     </motion.div>
                   )}

@@ -271,17 +271,16 @@ transition={{ duration: 0.5, delay: index * 0.1 }}
               </motion.div>
             ))}
           </div>
-
-          {/* Active Reminders */}
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Active Reminders</h2>
+{/* Active Reminders */}
+          <div className="space-y-mobile-2 sm:space-y-4">
+            <h2 className="text-xl font-semibold text-gray-800 mb-mobile-2 sm:mb-4">Active Reminders</h2>
             {reminders.map((reminder, index) => (
               <motion.div
                 key={reminder.id}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="cycle-card p-6"
+                className="cycle-card p-mobile-4 sm:p-6"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">

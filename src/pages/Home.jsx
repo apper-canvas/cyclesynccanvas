@@ -1,18 +1,31 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Link, useLocation } from 'react-router-dom'
 import MainFeature from '../components/MainFeature'
 import ApperIcon from '../components/ApperIcon'
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const location = useLocation()
 
-  const toggleDarkMode = () => {
+  const navItems = [
+    { path: '/', label: 'Home', icon: 'Home' },
+    { path: '/tracker', label: 'Tracker', icon: 'Calendar' },
+    { path: '/insights', label: 'Insights', icon: 'BarChart3' },
+    { path: '/profile', label: 'Profile', icon: 'User' }
+  ]
+const toggleDarkMode = () => {
     setDarkMode(!darkMode)
     if (!darkMode) {
       document.documentElement.classList.add('dark')
     } else {
       document.documentElement.classList.remove('dark')
     }
+  }
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
   }
 
   return (
@@ -37,6 +50,24 @@ export default function Home() {
               <h1 className="text-xl sm:text-2xl font-bold gradient-text">CycleSync</h1>
             </motion.div>
             
+{/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-xl font-medium transition-all duration-200 ${
+                    location.pathname === item.path
+                      ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
+                      : 'text-gray-700 dark:text-gray-200 hover:bg-white/60 hover:text-primary'
+                  }`}
+                >
+                  <ApperIcon name={item.icon} className="w-4 h-4" />
+                  <span>{item.label}</span>
+                </Link>
+              ))}
+            </nav>
+
             <div className="flex items-center space-x-3 sm:space-x-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -58,8 +89,52 @@ export default function Home() {
                 <ApperIcon name="Settings" className="w-4 h-4" />
                 <span>Settings</span>
               </motion.button>
+
+              {/* Mobile Menu Button */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={toggleMobileMenu}
+                className="lg:hidden p-2 sm:p-3 rounded-xl bg-white/60 backdrop-blur-sm border border-pink-200/50 hover:bg-white/80 transition-all duration-200"
+              >
+                <ApperIcon 
+                  name={mobileMenuOpen ? "X" : "Menu"} 
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" 
+                />
+              </motion.button>
             </div>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="lg:hidden border-t border-pink-200/30 bg-white/80 backdrop-blur-sm"
+              >
+                <div className="px-4 py-6 space-y-3">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                        location.pathname === item.path
+                          ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
+                          : 'text-gray-700 hover:bg-pink-100 hover:text-primary'
+                      }`}
+                    >
+                      <ApperIcon name={item.icon} className="w-5 h-5" />
+                      <span>{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </motion.header>
 

@@ -114,9 +114,10 @@ export default function Insights() {
                   className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" 
                 />
               </motion.button>
+</motion.button>
               
               <motion.button
-whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="lg:hidden p-2 sm:p-3 rounded-xl bg-white/60 backdrop-blur-sm border border-pink-200/50 hover:bg-white/80 transition-all duration-200"
@@ -128,10 +129,10 @@ whileHover={{ scale: 1.05 }}
               </motion.button>
             </div>
           </div>
+        </div>
 
-          {/* Mobile Navigation Menu */}
-          <AnimatePresence>
-            {mobileMenuOpen && (
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
@@ -156,10 +157,9 @@ whileHover={{ scale: 1.05 }}
                     </Link>
                   ))}
                 </div>
-              </motion.div>
+</motion.div>
             )}
           </AnimatePresence>
-        </div>
       </motion.header>
 
       {/* Main Content */}
@@ -169,7 +169,7 @@ whileHover={{ scale: 1.05 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-className="mb-8"
+            className="mb-8"
           >
             <h2 className="text-3xl sm:text-4xl font-bold gradient-text mb-2">Your Personal Patterns</h2>
             <p className="text-gray-600 dark:text-gray-300">Discover your unique rhythm and celebrate your body's wisdom</p>
@@ -236,10 +236,10 @@ className="mb-8"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="cycle-card p-6 text-center"
+className="cycle-card p-6 text-center"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-<ApperIcon name="TrendingUp" className="w-8 h-8 text-white" />
+                <ApperIcon name="TrendingUp" className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-3xl font-bold text-purple-600 mb-1">
                 {Math.ceil((cycleStats.nextPeriodDate - new Date()) / (1000 * 60 * 60 * 24))}
@@ -257,10 +257,10 @@ className="mb-8"
               <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <ApperIcon name="Flower" className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-green-600 mb-1">
+<h3 className="text-3xl font-bold text-green-600 mb-1">
                 {Math.ceil((cycleStats.fertileWindowStart - new Date()) / (1000 * 60 * 60 * 24))}
               </h3>
-<p className="text-sm text-gray-600">Days to Fertile Window</p>
+              <p className="text-sm text-gray-600">Days to Fertile Window</p>
               <p className="text-xs text-gray-500 mt-1">
                 {format(cycleStats.fertileWindowStart, 'MMM d')} - {format(cycleStats.fertileWindowEnd, 'MMM d')}
               </p>

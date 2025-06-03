@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import ApperIcon from '../components/ApperIcon'
-
 export default function Predictions() {
   const [darkMode, setDarkMode] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -126,10 +125,41 @@ export default function Predictions() {
                 />
               </motion.button>
             </div>
+</div>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="lg:hidden border-t border-pink-200/30 bg-white/80 backdrop-blur-sm"
+              >
+                <div className="px-4 py-6 space-y-3">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                        location.pathname === item.path
+                          ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
+                          : 'text-gray-700 hover:bg-pink-100 hover:text-primary'
+                      }`}
+                    >
+                      <ApperIcon name={item.icon} className="w-5 h-5" />
+                      <span>{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </motion.header>
-
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div

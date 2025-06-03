@@ -321,37 +321,34 @@ setSelectedSymptomInfo(null)
                 className="cycle-card p-6"
               >
                 <h2 className="text-xl font-semibold mb-4">{category.name} Symptoms</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-{category.symptoms.map((symptom) => (
+<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {category.symptoms.map((symptom) => (
                     <div key={symptom.id} className="space-y-2">
                       <div className="relative">
-                        <motion.button
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          onClick={() => toggleSymptom(symptom.id)}
-                          className={`w-full p-3 rounded-xl border-2 transition-all ${
-                            selectedSymptoms[symptom.id]
-                              ? 'border-primary bg-primary/10'
-                              : 'border-gray-200 hover:border-primary/50'
-                          }`}
-                        >
-                          <div className="flex items-center justify-between">
+                        <div className="flex items-stretch gap-1">
+                          <motion.button
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() => toggleSymptom(symptom.id)}
+                            className={`flex-1 p-3 rounded-xl border-2 transition-all ${
+                              selectedSymptoms[symptom.id]
+                                ? 'border-primary bg-primary/10'
+                                : 'border-gray-200 hover:border-primary/50'
+                            }`}
+                          >
                             <div className="flex items-center space-x-2">
                               <ApperIcon name={symptom.icon} className="w-4 h-4" />
                               <span className="text-sm font-medium">{symptom.label}</span>
                             </div>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                openSymptomInfo(symptom.id, symptom.label)
-                              }}
-                              className="p-1 rounded-full hover:bg-gray-200 transition-colors"
-                              title="View cause & effect"
-                            >
-                              <ApperIcon name="Info" className="w-3 h-3 text-gray-500" />
-                            </button>
-                          </div>
-                        </motion.button>
+                          </motion.button>
+                          <button
+                            onClick={() => openSymptomInfo(symptom.id, symptom.label)}
+                            className="p-3 rounded-xl border-2 border-gray-200 hover:border-primary/50 hover:bg-gray-50 transition-colors"
+                            title="View cause & effect"
+                          >
+                            <ApperIcon name="Info" className="w-4 h-4 text-gray-500" />
+                          </button>
+                        </div>
                       </div>
                       
                       {selectedSymptoms[symptom.id] && (

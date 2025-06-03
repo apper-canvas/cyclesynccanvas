@@ -259,11 +259,11 @@ export default function Reminders() {
               <motion.div
                 key={type.id}
                 initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="cycle-card p-4 text-center"
+transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="cycle-card p-mobile-3 sm:p-4 text-center"
               >
-                <div className={`w-12 h-12 bg-gradient-to-br ${type.color} rounded-xl flex items-center justify-center mx-auto mb-3`}>
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br ${type.color} rounded-xl flex items-center justify-center mx-auto mb-mobile-2 sm:mb-3`}>
+                  <ApperIcon name={type.icon} className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   <ApperIcon name={type.icon} className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-semibold text-gray-800 mb-1">{type.label}</h3>

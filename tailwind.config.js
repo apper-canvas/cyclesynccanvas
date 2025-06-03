@@ -69,13 +69,18 @@ theme: {
         'xl': '0.75rem',
         '2xl': '1rem'
       },
-      spacing: {
+spacing: {
+        'mobile-0.5': '0.125rem',
         'mobile-1': '0.25rem',
+        'mobile-1.5': '0.375rem',
         'mobile-2': '0.5rem', 
+        'mobile-2.5': '0.625rem',
         'mobile-3': '0.75rem',
         'mobile-4': '1rem',
         'mobile-5': '1.25rem',
-        'mobile-6': '1.5rem'
+        'mobile-6': '1.5rem',
+        'mobile-7': '1.75rem',
+        'mobile-8': '2rem'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

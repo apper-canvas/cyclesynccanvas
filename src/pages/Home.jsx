@@ -306,9 +306,9 @@ const handleFeatureClick = (featureLabel, event) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.5 }}
-        className="glass-effect border-t border-pink-200/30 mt-16 sm:mt-20"
+className="glass-effect border-t border-pink-200/30 mt-mobile-8 sm:mt-20"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-mobile-6 sm:py-12">
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">

@@ -116,8 +116,8 @@ export default function Insights() {
               </motion.button>
               
               <motion.button
-                whileHover={{ scale: 1.05 }}
-whileTap={{ scale: 0.95 }}
+whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="lg:hidden p-2 sm:p-3 rounded-xl bg-white/60 backdrop-blur-sm border border-pink-200/50 hover:bg-white/80 transition-all duration-200"
               >
@@ -169,8 +169,8 @@ whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-8"
->
+className="mb-8"
+          >
             <h2 className="text-3xl sm:text-4xl font-bold gradient-text mb-2">Your Personal Patterns</h2>
             <p className="text-gray-600 dark:text-gray-300">Discover your unique rhythm and celebrate your body's wisdom</p>
           </motion.div>
@@ -242,6 +242,7 @@ whileTap={{ scale: 0.95 }}
                 <ApperIcon name="TrendingUp" className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-3xl font-bold text-purple-600 mb-1">
+<h3 className="text-3xl font-bold text-purple-600 mb-1">
                 {Math.ceil((cycleStats.nextPeriodDate - new Date()) / (1000 * 60 * 60 * 24))}
               </h3>
               <p className="text-sm text-gray-600">Days to Next Period</p>
@@ -263,9 +264,6 @@ whileTap={{ scale: 0.95 }}
               <p className="text-sm text-gray-600">Days to Fertile Window</p>
               <p className="text-xs text-gray-500 mt-1">
                 {format(cycleStats.fertileWindowStart, 'MMM d')} - {format(cycleStats.fertileWindowEnd, 'MMM d')}
-              </p>
-            </motion.div>
-          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Cycle History Chart */}

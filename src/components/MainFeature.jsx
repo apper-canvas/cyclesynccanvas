@@ -208,11 +208,11 @@ export default function MainFeature() {
             key="calendar"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
+exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.3 }}
-            className="cycle-card p-4 sm:p-6 lg:p-8"
+            className="cycle-card p-mobile-3 sm:p-6 lg:p-8"
           >
-            <div className="flex items-center justify-between mb-6 sm:mb-8">
+            <div className="flex items-center justify-between mb-mobile-4 sm:mb-8">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200">
                 {format(currentDate, 'MMMM yyyy')}
               </h2>

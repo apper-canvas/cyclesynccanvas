@@ -426,11 +426,11 @@ export default function Tracker() {
               <h4 className="text-2xl font-bold text-purple-600">
                 {Object.values(cycleData).reduce((acc, d) => acc + d.symptoms.length, 0)}
               </h4>
-              <p className="text-sm text-gray-600">Symptoms Logged</p>
+<p className="text-xs sm:text-sm text-gray-600">Symptoms Logged</p>
             </div>
-            <div className="cycle-card p-4 text-center">
-              <ApperIcon name="FileText" className="w-8 h-8 text-indigo-500 mx-auto mb-2" />
-              <h4 className="text-2xl font-bold text-indigo-600">
+            <div className="cycle-card p-mobile-2.5 sm:p-4 text-center">
+              <ApperIcon name="FileText" className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-500 mx-auto mb-mobile-1.5 sm:mb-2" />
+              <h4 className="text-xl sm:text-2xl font-bold text-indigo-600">
                 {Object.values(cycleData).filter(d => d.notes).length}
               </h4>
               <p className="text-sm text-gray-600">Notes Added</p>

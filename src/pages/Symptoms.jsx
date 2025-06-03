@@ -419,11 +419,11 @@ setSelectedSymptomInfo(null)
           {/* Quick Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4"
+transition={{ duration: 0.5, delay: 0.7 }}
+            className="mt-mobile-5 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-mobile-2.5 sm:gap-4"
           >
-            <div className="cycle-card p-4 sm:p-4 text-center">
+            <div className="cycle-card p-mobile-3 sm:p-4 text-center">
+              <div className="text-lg sm:text-2xl font-bold text-primary">{Object.keys(selectedSymptoms).length}</div>
               <div className="text-xl sm:text-2xl font-bold text-primary">{Object.keys(selectedSymptoms).length}</div>
               <div className="text-xs sm:text-sm text-gray-600">Symptoms Today</div>
             </div>

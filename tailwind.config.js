@@ -5,19 +5,42 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
+extend: {
       colors: {
+        border: "hsl(214.3 31.8% 91.4%)",
+        input: "hsl(214.3 31.8% 91.4%)",
+        ring: "hsl(222.2 84% 4.9%)",
+        background: "hsl(0 0% 100%)",
+        foreground: "hsl(222.2 84% 4.9%)",
         primary: {
           DEFAULT: '#E91E63',
           light: '#F8BBD9',
-          dark: '#AD1457'
+          dark: '#AD1457',
+          foreground: "hsl(210 40% 98%)"
         },
         secondary: {
           DEFAULT: '#9C27B0',
           light: '#E1BEE7',
-          dark: '#6A1B6A'
+          dark: '#6A1B6A',
+          foreground: "hsl(222.2 47.4% 11.2%)"
+        },
+        destructive: {
+          DEFAULT: "hsl(0 84.2% 60.2%)",
+          foreground: "hsl(210 40% 98%)"
+        },
+        muted: {
+          DEFAULT: "hsl(210 40% 96%)",
+          foreground: "hsl(215.4 16.3% 46.9%)"
         },
         accent: '#FF6B9D',
+        popover: {
+          DEFAULT: "hsl(0 0% 100%)",
+          foreground: "hsl(222.2 84% 4.9%)"
+        },
+        card: {
+          DEFAULT: "hsl(0 0% 100%)",
+          foreground: "hsl(222.2 84% 4.9%)"
+        },
         surface: {
           50: '#f8fafc',
           100: '#f1f5f9',

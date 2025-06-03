@@ -35,9 +35,9 @@
     @apply opacity-100;
   }
   
-  .symptom-chip {
+.symptom-chip {
     @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer select-none;
-    @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
+    @apply bg-pink-50 text-pink-700 hover:bg-pink-100 border border-pink-200;
   }
   
   .symptom-chip.selected {

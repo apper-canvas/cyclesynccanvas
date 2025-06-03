@@ -7,8 +7,8 @@ export default {
   theme: {
 extend: {
       colors: {
-        border: "hsl(214.3 31.8% 91.4%)",
-        input: "hsl(214.3 31.8% 91.4%)",
+        border: "hsl(328 100% 95%)",
+        input: "hsl(328 100% 96%)",
         ring: "hsl(222.2 84% 4.9%)",
         background: "hsl(0 0% 100%)",
         foreground: "hsl(222.2 84% 4.9%)",
@@ -29,8 +29,8 @@ extend: {
           foreground: "hsl(210 40% 98%)"
         },
         muted: {
-          DEFAULT: "hsl(210 40% 96%)",
-          foreground: "hsl(215.4 16.3% 46.9%)"
+          DEFAULT: "hsl(330 50% 98%)",
+          foreground: "hsl(280 15% 65%)"
         },
         accent: '#FF6B9D',
         popover: {
@@ -42,16 +42,16 @@ extend: {
           foreground: "hsl(222.2 84% 4.9%)"
         },
         surface: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a'
+          50: '#fef7ff',
+          100: '#fdf2ff',
+          200: '#fce7ff',
+          300: '#f8d4ff',
+          400: '#f0abff',
+          500: '#e879ff',
+          600: '#d946ef',
+          700: '#c026d3',
+          800: '#a21caf',
+          900: '#86198f'
         }
       },
       fontFamily: {

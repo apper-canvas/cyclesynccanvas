@@ -50,6 +50,5 @@ export default function ApperIcon({ name, className = "w-6 h-6", ...props }) {
   if (!IconComponent) {
     return null
   }
-  
-  return <IconComponent className={className} {...props} />
+return <IconComponent className={className} {...props} />
 }

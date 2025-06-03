@@ -9,11 +9,12 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-  const navItems = [
+const navItems = [
     { path: '/', label: 'Home', icon: 'Home' },
     { path: '/tracker', label: 'Tracker', icon: 'Calendar' },
     { path: '/insights', label: 'Insights', icon: 'BarChart3' },
-    { path: '/profile', label: 'Profile', icon: 'User' }
+    { path: '/profile', label: 'Profile', icon: 'User' },
+    { path: '/chat', label: 'Support', icon: 'MessageCircle' }
   ]
 const toggleDarkMode = () => {
     setDarkMode(!darkMode)

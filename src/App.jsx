@@ -17,9 +17,10 @@ return (
         <Route path="/tracker" element={<Tracker />} />
         <Route path="/insights" element={<Insights />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/predictions" element={<Predictions />} />
+<Route path="/predictions" element={<Predictions />} />
         <Route path="/reminders" element={<Reminders />} />
         <Route path="/symptoms" element={<Symptoms />} />
+        <Route path="/chat" element={<Chat />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer

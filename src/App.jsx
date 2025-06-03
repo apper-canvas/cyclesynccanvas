@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import Predictions from './pages/Predictions'
 import Reminders from './pages/Reminders'
 import Symptoms from './pages/Symptoms'
+import Chat from './pages/Chat'
 import NotFound from './pages/NotFound'
 function App() {
 return (

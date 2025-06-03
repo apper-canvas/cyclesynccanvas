@@ -28,25 +28,38 @@ const toggleDarkMode = () => {
     setMobileMenuOpen(!mobileMenuOpen)
   }
 
-const handleFeatureClick = (featureLabel) => {
+const handleFeatureClick = (featureLabel, event) => {
+    // Prevent any default behavior
+    if (event) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    
+    console.log('Feature clicked:', featureLabel) // Debug log
+    
     switch (featureLabel) {
       case 'Cycle Tracking':
+        console.log('Navigating to tracker')
         navigate('/tracker')
         toast.success('Opening cycle tracker...')
         break
       case 'Symptom Log':
+        console.log('Navigating to symptoms')
         navigate('/symptoms')
         toast.success('Opening symptom tracker...')
         break
       case 'Predictions':
+        console.log('Navigating to predictions')
         navigate('/predictions')
         toast.info('Opening cycle predictions...')
         break
       case 'Reminders':
+        console.log('Navigating to reminders')
         navigate('/reminders')
         toast.info('Opening reminder settings...')
         break
       case 'Analytics':
+        console.log('Navigating to insights')
         navigate('/insights')
         toast.success('Opening analytics dashboard...')
         break
@@ -253,22 +266,23 @@ const handleFeatureClick = (featureLabel) => {
                 { icon: "BarChart3", label: "Analytics", color: "from-orange-500 to-amber-500" },
                 { icon: "Shield", label: "Privacy", color: "from-teal-500 to-cyan-500" }
 ].map((feature, index) => (
-                <motion.div
+<motion.button
                   key={feature.label}
+                  type="button"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => handleFeatureClick(feature.label)}
-                  className="flex flex-col items-center p-4 sm:p-6 cycle-card group cursor-pointer"
-                  role="button"
-                  tabIndex={0}
-                  onKeyPress={(e) => {
+                  onClick={(e) => handleFeatureClick(feature.label, e)}
+                  onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
-                      handleFeatureClick(feature.label)
+                      e.preventDefault()
+                      handleFeatureClick(feature.label, e)
                     }
                   }}
+                  className="flex flex-col items-center p-4 sm:p-6 cycle-card group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-2xl"
+                  aria-label={`Open ${feature.label}`}
                 >
                   <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 mb-3 sm:mb-4`}>
                     <ApperIcon name={feature.icon} className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
@@ -276,7 +290,7 @@ const handleFeatureClick = (featureLabel) => {
                   <h3 className="text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-200 text-center">
                     {feature.label}
                   </h3>
-                </motion.div>
+                </motion.button>
               ))}
             </motion.div>
           </div>

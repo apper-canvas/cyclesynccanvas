@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .cycle-card {
+    @apply bg-white/80 backdrop-blur-sm border border-pink-200/50 rounded-2xl shadow-cycle hover:shadow-xl transition-all duration-300;
+  }
+  
+  .flow-button {
+    @apply relative overflow-hidden rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95;
+  }
+  
+  .flow-button::before {
+    @apply absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 transition-opacity duration-300;
+    content: '';
+  }
+  
+  .flow-button.active::before {
+    @apply opacity-100;
+  }
+  
+  .symptom-chip {
+    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer select-none;
+    @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
+  }
+  
+  .symptom-chip.selected {
+    @apply bg-gradient-to-r from-primary to-secondary text-white shadow-md;
+  }
+  
+  .calendar-day {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center text-sm font-medium transition-all duration-200 cursor-pointer;
+    @apply hover:bg-pink-100 hover:scale-105;
+  }
+  
+  .calendar-day.period {
+    @apply bg-gradient-to-br from-primary to-secondary text-white shadow-lg;
+  }
+  
+  .calendar-day.fertile {
+    @apply bg-gradient-to-br from-green-400 to-emerald-500 text-white;
+  }
+  
+  .calendar-day.today {
+    @apply ring-2 ring-primary ring-offset-2;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .glass-effect {
+    @apply bg-white/20 backdrop-blur-md border border-white/30;
+  }
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 rounded-lg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/60 rounded-lg;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/80;
+}
+
+/* React Toastify custom styles */
+.Toastify__toast {
+  @apply rounded-xl border-l-4 shadow-lg;
+}
+
+.Toastify__toast--success {
+  @apply border-l-green-500 bg-green-50;
+}
+
+.Toastify__toast--error {
+  @apply border-l-red-500 bg-red-50;
+}
+
+.Toastify__toast--warning {
+  @apply border-l-yellow-500 bg-yellow-50;
+}

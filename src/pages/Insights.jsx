@@ -239,10 +239,9 @@ className="mb-8"
               className="cycle-card p-6 text-center"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <ApperIcon name="TrendingUp" className="w-8 h-8 text-white" />
+<ApperIcon name="TrendingUp" className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-3xl font-bold text-purple-600 mb-1">
-<h3 className="text-3xl font-bold text-purple-600 mb-1">
                 {Math.ceil((cycleStats.nextPeriodDate - new Date()) / (1000 * 60 * 60 * 24))}
               </h3>
               <p className="text-sm text-gray-600">Days to Next Period</p>
@@ -261,9 +260,12 @@ className="mb-8"
               <h3 className="text-3xl font-bold text-green-600 mb-1">
                 {Math.ceil((cycleStats.fertileWindowStart - new Date()) / (1000 * 60 * 60 * 24))}
               </h3>
-              <p className="text-sm text-gray-600">Days to Fertile Window</p>
+<p className="text-sm text-gray-600">Days to Fertile Window</p>
               <p className="text-xs text-gray-500 mt-1">
                 {format(cycleStats.fertileWindowStart, 'MMM d')} - {format(cycleStats.fertileWindowEnd, 'MMM d')}
+              </p>
+            </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Cycle History Chart */}

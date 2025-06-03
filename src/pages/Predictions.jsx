@@ -122,10 +122,9 @@ export default function Predictions() {
                 <ApperIcon 
                   name={mobileMenuOpen ? "X" : "Menu"} 
                   className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" 
-                />
+/>
               </motion.button>
             </div>
-</div>
           </div>
 
           {/* Mobile Navigation Menu */}

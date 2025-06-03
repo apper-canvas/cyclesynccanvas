@@ -131,45 +131,44 @@ export default function MainFeature() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-      {/* Header Stats */}
+{/* Header Stats */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12"
+        className="grid grid-cols-2 lg:grid-cols-4 gap-mobile-3 sm:gap-6 mb-mobile-5 sm:mb-12"
       >
-        <div className="cycle-card p-4 sm:p-6 text-center">
-          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
-            <ApperIcon name="Calendar" className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+        <div className="cycle-card p-mobile-3 sm:p-6 text-center">
+<div className="w-10 h-10 sm:w-16 sm:h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-mobile-2 sm:mb-4">
+            <ApperIcon name="Calendar" className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
           </div>
-          <h3 className="text-2xl sm:text-3xl font-bold gradient-text mb-1">28</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">Avg Cycle Length</p>
+          <h3 className="text-xl sm:text-3xl font-bold gradient-text mb-mobile-1">28</h3>
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Avg Cycle Length</p>
         </div>
-
-        <div className="cycle-card p-4 sm:p-6 text-center">
-          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
-            <ApperIcon name="TrendingUp" className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+<div className="cycle-card p-mobile-3 sm:p-6 text-center">
+          <div className="w-10 h-10 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-mobile-2 sm:mb-4">
+            <ApperIcon name="TrendingUp" className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
           </div>
-          <h3 className="text-2xl sm:text-3xl font-bold text-green-600 mb-1">
+          <h3 className="text-xl sm:text-3xl font-bold text-green-600 mb-mobile-1">
             {nextPeriodDate ? Math.ceil((nextPeriodDate - new Date()) / (1000 * 60 * 60 * 24)) : '--'}
           </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">Days to Next Period</p>
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Days to Next Period</p>
         </div>
 
-        <div className="cycle-card p-4 sm:p-6 text-center">
-          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
-            <ApperIcon name="Heart" className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+<div className="cycle-card p-mobile-3 sm:p-6 text-center">
+          <div className="w-10 h-10 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-mobile-2 sm:mb-4">
+            <ApperIcon name="Heart" className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
           </div>
-          <h3 className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1">{Object.keys(cycleData).length}</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">Days Logged</p>
+          <h3 className="text-xl sm:text-3xl font-bold text-purple-600 mb-mobile-1">{Object.keys(cycleData).length}</h3>
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Days Logged</p>
         </div>
 
-        <div className="cycle-card p-4 sm:p-6 text-center">
-          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
-            <ApperIcon name="Target" className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+<div className="cycle-card p-mobile-3 sm:p-6 text-center">
+          <div className="w-10 h-10 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-mobile-2 sm:mb-4">
+            <ApperIcon name="Target" className="w-5 h-5 sm:w-8 sm:h-8 text-white" />
           </div>
-          <h3 className="text-2xl sm:text-3xl font-bold text-orange-600 mb-1">14</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">Fertile Window</p>
+          <h3 className="text-xl sm:text-3xl font-bold text-orange-600 mb-mobile-1">14</h3>
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Fertile Window</p>
         </div>
       </motion.div>
 

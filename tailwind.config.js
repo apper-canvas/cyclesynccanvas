@@ -4,8 +4,8 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {
-extend: {
+theme: {
+    extend: {
       colors: {
         border: "hsl(328 100% 95%)",
         input: "hsl(328 100% 96%)",
@@ -68,6 +68,14 @@ extend: {
       borderRadius: {
         'xl': '0.75rem',
         '2xl': '1rem'
+      },
+      spacing: {
+        'mobile-1': '0.25rem',
+        'mobile-2': '0.5rem', 
+        'mobile-3': '0.75rem',
+        'mobile-4': '1rem',
+        'mobile-5': '1.25rem',
+        'mobile-6': '1.5rem'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

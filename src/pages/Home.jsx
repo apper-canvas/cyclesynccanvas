@@ -28,22 +28,22 @@ const toggleDarkMode = () => {
     setMobileMenuOpen(!mobileMenuOpen)
   }
 
-  const handleFeatureClick = (featureLabel) => {
+const handleFeatureClick = (featureLabel) => {
     switch (featureLabel) {
       case 'Cycle Tracking':
         navigate('/tracker')
         toast.success('Opening cycle tracker...')
         break
       case 'Symptom Log':
-        navigate('/tracker')
+        navigate('/symptoms')
         toast.success('Opening symptom tracker...')
         break
       case 'Predictions':
-        navigate('/tracker')
+        navigate('/predictions')
         toast.info('Opening cycle predictions...')
         break
       case 'Reminders':
-        navigate('/tracker')
+        navigate('/reminders')
         toast.info('Opening reminder settings...')
         break
       case 'Analytics':

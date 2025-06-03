@@ -5,6 +5,9 @@ import Home from './pages/Home'
 import Tracker from './pages/Tracker'
 import Insights from './pages/Insights'
 import Profile from './pages/Profile'
+import Predictions from './pages/Predictions'
+import Reminders from './pages/Reminders'
+import Symptoms from './pages/Symptoms'
 import NotFound from './pages/NotFound'
 function App() {
 return (

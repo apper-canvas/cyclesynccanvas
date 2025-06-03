@@ -325,11 +325,10 @@ className="lg:col-span-3"
                       <div className="text-center mb-8">
                         <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                           <ApperIcon name="UserPlus" className="w-8 h-8 text-white" />
-                        </div>
-                        <h3 className="text-2xl font-bold gradient-text mb-2">Welcome to CycleSync!</h3>
-                        <p className="text-gray-600">Let's set up your profile to get personalized cycle tracking</p>
+</div>
+                        <h3 className="text-2xl font-bold gradient-text mb-2">Welcome to Your Wellness Journey!</h3>
+                        <p className="text-gray-600">Let's create your personal space for gentle, caring cycle support</p>
                       </div>
-
                       <div className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>

@@ -313,10 +313,10 @@ const handleFeatureClick = (featureLabel, event) => {
               <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
                 <ApperIcon name="Heart" className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold gradient-text">CycleSync</span>
+<span className="text-xl font-bold gradient-text">CycleSync</span>
             </div>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Empowering women through informed cycle tracking and health insights.
+              Supporting women on their wellness journey with love, care, and understanding.
             </p>
             <div className="flex justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
               <span>Privacy First</span>

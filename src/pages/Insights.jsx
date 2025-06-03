@@ -167,11 +167,10 @@ export default function Insights() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="mb-8"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold gradient-text mb-2">Cycle Insights</h2>
-            <p className="text-gray-600 dark:text-gray-300">Understand your patterns and predict your cycle</p>
+>
+            <h2 className="text-3xl sm:text-4xl font-bold gradient-text mb-2">Your Personal Patterns</h2>
+            <p className="text-gray-600 dark:text-gray-300">Discover your unique rhythm and celebrate your body's wisdom</p>
           </motion.div>
-
           {/* Period Filter */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

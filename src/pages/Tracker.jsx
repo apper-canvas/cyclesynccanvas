@@ -213,11 +213,10 @@ export default function Tracker() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="mb-8"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold gradient-text mb-2">Cycle Tracker</h2>
-            <p className="text-gray-600 dark:text-gray-300">Log your daily symptoms and track your menstrual cycle</p>
+>
+            <h2 className="text-3xl sm:text-4xl font-bold gradient-text mb-2">Your Daily Wellness</h2>
+            <p className="text-gray-600 dark:text-gray-300">Record how you're feeling and discover your body's natural rhythm</p>
           </motion.div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             {/* Calendar Section */}
             <motion.div

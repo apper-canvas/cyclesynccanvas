@@ -208,9 +208,9 @@ export default function Reminders() {
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center justify-between mb-8">
-            <div>
-              <h1 className="text-3xl sm:text-4xl font-bold gradient-text mb-2">Reminders</h1>
-              <p className="text-gray-600 dark:text-gray-400">Stay on top of your health routine</p>
+<div>
+              <h1 className="text-3xl sm:text-4xl font-bold gradient-text mb-2">Gentle Reminders</h1>
+              <p className="text-gray-600 dark:text-gray-400">Stay connected with your wellness routine and self-care</p>
             </div>
             <motion.button
               whileHover={{ scale: 1.05 }}

@@ -269,9 +269,9 @@ setSelectedSymptomInfo(null)
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center justify-between mb-8">
-            <div>
-              <h1 className="text-3xl sm:text-4xl font-bold gradient-text mb-2">Symptom Tracker</h1>
-              <p className="text-gray-600 dark:text-gray-400">Log your daily symptoms and mood</p>
+<div>
+              <h1 className="text-3xl sm:text-4xl font-bold gradient-text mb-2">How Are You Feeling?</h1>
+              <p className="text-gray-600 dark:text-gray-400">Share what you're experiencing and track your daily wellness</p>
             </div>
             <div className="text-right">
               <p className="text-sm text-gray-500">Today</p>

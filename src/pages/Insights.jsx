@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import { format, subMonths, addDays } from 'date-fns'
 import ApperIcon from '../components/ApperIcon'
@@ -122,6 +122,7 @@ export default function Insights() {
                 className="lg:hidden p-2 sm:p-3 rounded-xl bg-white/60 backdrop-blur-sm border border-pink-200/50 hover:bg-white/80 transition-all duration-200"
               >
                 <ApperIcon 
+<ApperIcon 
                   name={mobileMenuOpen ? "X" : "Menu"} 
                   className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" 
                 />
@@ -129,33 +130,36 @@ export default function Insights() {
             </div>
           </div>
 
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden border-t border-pink-200/30 bg-white/80 backdrop-blur-sm"
-            >
-              <div className="px-4 py-6 space-y-3">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-                      location.pathname === item.path
-                        ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
-                        : 'text-gray-700 hover:bg-pink-100 hover:text-primary'
-                    }`}
-                  >
-                    <ApperIcon name={item.icon} className="w-5 h-5" />
-                    <span>{item.label}</span>
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          )}
+          {/* Mobile Navigation Menu */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="lg:hidden border-t border-pink-200/30 bg-white/80 backdrop-blur-sm"
+              >
+                <div className="px-4 py-6 space-y-3">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                        location.pathname === item.path
+                          ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
+                          : 'text-gray-700 hover:bg-pink-100 hover:text-primary'
+                      }`}
+                    >
+                      <ApperIcon name={item.icon} className="w-5 h-5" />
+                      <span>{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </motion.header>
 

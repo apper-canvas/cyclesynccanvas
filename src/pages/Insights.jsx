@@ -117,12 +117,11 @@ export default function Insights() {
               
               <motion.button
                 whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+whileTap={{ scale: 0.95 }}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="lg:hidden p-2 sm:p-3 rounded-xl bg-white/60 backdrop-blur-sm border border-pink-200/50 hover:bg-white/80 transition-all duration-200"
               >
                 <ApperIcon 
-<ApperIcon 
                   name={mobileMenuOpen ? "X" : "Menu"} 
                   className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" 
                 />

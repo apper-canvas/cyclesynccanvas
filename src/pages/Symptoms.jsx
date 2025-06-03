@@ -10,15 +10,79 @@ export default function Symptoms() {
   const [selectedSymptoms, setSelectedSymptoms] = useState({})
   const [currentMood, setCurrentMood] = useState('')
   const [notes, setNotes] = useState('')
+  const [showInfoModal, setShowInfoModal] = useState(false)
+  const [selectedSymptomInfo, setSelectedSymptomInfo] = useState(null)
   
   const location = useLocation()
-  
   const navItems = [
     { path: '/', label: 'Home', icon: 'Home' },
     { path: '/tracker', label: 'Tracker', icon: 'Calendar' },
     { path: '/insights', label: 'Insights', icon: 'BarChart3' },
     { path: '/profile', label: 'Profile', icon: 'User' }
   ]
+
+const symptomData = {
+    cramps: {
+      causes: ['Prostaglandins release', 'Uterine contractions', 'Hormonal changes', 'Stress', 'Poor diet'],
+      effects: ['Difficulty concentrating', 'Reduced mobility', 'Sleep disruption', 'Mood changes', 'Decreased productivity'],
+      tips: ['Apply heat', 'Gentle exercise', 'Stay hydrated', 'Anti-inflammatory foods', 'Relaxation techniques']
+    },
+    bloating: {
+      causes: ['Hormonal fluctuations', 'Water retention', 'Digestive changes', 'High sodium intake', 'Food sensitivities'],
+      effects: ['Clothing discomfort', 'Body image concerns', 'Digestive discomfort', 'Reduced appetite', 'Social anxiety'],
+      tips: ['Reduce sodium', 'Drink plenty of water', 'Eat fiber-rich foods', 'Avoid carbonated drinks', 'Practice yoga']
+    },
+    headache: {
+      causes: ['Hormonal changes', 'Stress', 'Dehydration', 'Sleep issues', 'Blood sugar changes'],
+      effects: ['Concentration problems', 'Light sensitivity', 'Nausea', 'Irritability', 'Work/study impact'],
+      tips: ['Stay hydrated', 'Regular sleep schedule', 'Stress management', 'Cool compress', 'Dark, quiet room']
+    },
+    fatigue: {
+      causes: ['Iron deficiency', 'Hormonal changes', 'Poor sleep', 'Stress', 'Low blood sugar'],
+      effects: ['Reduced energy', 'Cognitive fog', 'Exercise intolerance', 'Mood changes', 'Social withdrawal'],
+      tips: ['Iron-rich foods', 'Regular exercise', 'Adequate sleep', 'Balanced meals', 'Energy conservation']
+    },
+    backache: {
+      causes: ['Prostaglandins', 'Muscle tension', 'Poor posture', 'Stress', 'Inflammation'],
+      effects: ['Movement limitation', 'Sleep disruption', 'Daily activity impact', 'Mood changes', 'Work productivity loss'],
+      tips: ['Heat therapy', 'Gentle stretching', 'Good posture', 'Supportive mattress', 'Pain relief medication']
+    },
+    breast_tenderness: {
+      causes: ['Hormonal fluctuations', 'Water retention', 'Caffeine', 'High fat diet', 'Stress'],
+      effects: ['Physical discomfort', 'Sleep position changes', 'Clothing restrictions', 'Exercise limitations', 'Touch sensitivity'],
+      tips: ['Supportive bra', 'Reduce caffeine', 'Cold compress', 'Gentle massage', 'Loose clothing']
+    },
+    mood_swings: {
+      causes: ['Hormonal changes', 'Serotonin fluctuations', 'Stress', 'Sleep disruption', 'Blood sugar changes'],
+      effects: ['Relationship strain', 'Work conflicts', 'Decision-making issues', 'Self-esteem problems', 'Social isolation'],
+      tips: ['Regular exercise', 'Balanced diet', 'Stress management', 'Support system', 'Mindfulness practice']
+    },
+    anxiety: {
+      causes: ['Hormonal imbalance', 'Stress', 'Caffeine', 'Sleep issues', 'Life pressures'],
+      effects: ['Racing thoughts', 'Physical tension', 'Avoidance behaviors', 'Sleep problems', 'Panic attacks'],
+      tips: ['Deep breathing', 'Regular exercise', 'Limit caffeine', 'Relaxation techniques', 'Professional support']
+    },
+    irritability: {
+      causes: ['Hormonal changes', 'Discomfort', 'Sleep deprivation', 'Stress', 'Blood sugar drops'],
+      effects: ['Relationship conflicts', 'Work tension', 'Guilt feelings', 'Social withdrawal', 'Communication problems'],
+      tips: ['Stress management', 'Regular meals', 'Adequate sleep', 'Communication', 'Patience with self']
+    },
+    depression: {
+      causes: ['Hormonal changes', 'Serotonin drops', 'Chronic pain', 'Stress', 'Seasonal factors'],
+      effects: ['Low motivation', 'Social withdrawal', 'Cognitive issues', 'Self-care neglect', 'Hopelessness'],
+      tips: ['Regular exercise', 'Social connection', 'Professional help', 'Sunlight exposure', 'Self-compassion']
+    },
+    stress: {
+      causes: ['Life demands', 'Physical symptoms', 'Hormonal changes', 'Work pressure', 'Relationship issues'],
+      effects: ['Muscle tension', 'Sleep problems', 'Immune suppression', 'Digestive issues', 'Mental fatigue'],
+      tips: ['Stress management', 'Regular exercise', 'Relaxation techniques', 'Time management', 'Support network']
+    },
+    crying: {
+      causes: ['Emotional overwhelm', 'Hormonal sensitivity', 'Stress buildup', 'Physical discomfort', 'Fatigue'],
+      effects: ['Emotional release', 'Puffy eyes', 'Headache', 'Exhaustion', 'Vulnerability feelings'],
+      tips: ['Allow emotions', 'Gentle self-care', 'Hydration', 'Cool compress', 'Emotional support']
+    }
+  }
 
   const symptomCategories = [
     {
@@ -83,12 +147,21 @@ export default function Symptoms() {
       [symptomId]: prev[symptomId] ? null : { intensity, timestamp: new Date().toISOString() }
     }))
   }
-
-  const updateSymptomIntensity = (symptomId, intensity) => {
+const updateSymptomIntensity = (symptomId, intensity) => {
     setSelectedSymptoms(prev => ({
       ...prev,
       [symptomId]: { ...prev[symptomId], intensity }
     }))
+  }
+
+  const openSymptomInfo = (symptomId, symptomLabel) => {
+    setSelectedSymptomInfo({ id: symptomId, label: symptomLabel })
+    setShowInfoModal(true)
+  }
+
+  const closeSymptomInfo = () => {
+    setShowInfoModal(false)
+setSelectedSymptomInfo(null)
   }
 
   const saveSymptoms = () => {
@@ -249,23 +322,37 @@ export default function Symptoms() {
               >
                 <h2 className="text-xl font-semibold mb-4">{category.name} Symptoms</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {category.symptoms.map((symptom) => (
+{category.symptoms.map((symptom) => (
                     <div key={symptom.id} className="space-y-2">
-                      <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => toggleSymptom(symptom.id)}
-                        className={`w-full p-3 rounded-xl border-2 transition-all ${
-                          selectedSymptoms[symptom.id]
-                            ? 'border-primary bg-primary/10'
-                            : 'border-gray-200 hover:border-primary/50'
-                        }`}
-                      >
-                        <div className="flex items-center space-x-2">
-                          <ApperIcon name={symptom.icon} className="w-4 h-4" />
-                          <span className="text-sm font-medium">{symptom.label}</span>
-                        </div>
-                      </motion.button>
+                      <div className="relative">
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => toggleSymptom(symptom.id)}
+                          className={`w-full p-3 rounded-xl border-2 transition-all ${
+                            selectedSymptoms[symptom.id]
+                              ? 'border-primary bg-primary/10'
+                              : 'border-gray-200 hover:border-primary/50'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-2">
+                              <ApperIcon name={symptom.icon} className="w-4 h-4" />
+                              <span className="text-sm font-medium">{symptom.label}</span>
+                            </div>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                openSymptomInfo(symptom.id, symptom.label)
+                              }}
+                              className="p-1 rounded-full hover:bg-gray-200 transition-colors"
+                              title="View cause & effect"
+                            >
+                              <ApperIcon name="Info" className="w-3 h-3 text-gray-500" />
+                            </button>
+                          </div>
+                        </motion.button>
+                      </div>
                       
                       {selectedSymptoms[symptom.id] && (
                         <motion.div
@@ -354,8 +441,97 @@ export default function Symptoms() {
               <div className="text-sm text-gray-600">Day Streak</div>
             </div>
           </motion.div>
-        </motion.div>
+</motion.div>
       </main>
+
+      {/* Symptom Information Modal */}
+      {showInfoModal && selectedSymptomInfo && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+          onClick={closeSymptomInfo}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-xl"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                {selectedSymptomInfo.label} - Cause & Effect
+              </h2>
+              <button
+                onClick={closeSymptomInfo}
+                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              >
+                <ApperIcon name="X" className="w-5 h-5" />
+              </button>
+            </div>
+
+            {symptomData[selectedSymptomInfo.id] && (
+              <div className="space-y-6">
+                {/* Causes Section */}
+                <div>
+                  <h3 className="flex items-center text-lg font-semibold text-red-600 mb-3">
+                    <ApperIcon name="AlertTriangle" className="w-5 h-5 mr-2" />
+                    Common Causes
+                  </h3>
+                  <ul className="space-y-2">
+                    {symptomData[selectedSymptomInfo.id].causes.map((cause, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span className="text-gray-700 dark:text-gray-300">{cause}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Effects Section */}
+                <div>
+                  <h3 className="flex items-center text-lg font-semibold text-orange-600 mb-3">
+                    <ApperIcon name="Target" className="w-5 h-5 mr-2" />
+                    Potential Effects
+                  </h3>
+                  <ul className="space-y-2">
+                    {symptomData[selectedSymptomInfo.id].effects.map((effect, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="w-2 h-2 bg-orange-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span className="text-gray-700 dark:text-gray-300">{effect}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Management Tips Section */}
+                <div>
+                  <h3 className="flex items-center text-lg font-semibold text-green-600 mb-3">
+                    <ApperIcon name="Lightbulb" className="w-5 h-5 mr-2" />
+                    Management Tips
+                  </h3>
+                  <ul className="space-y-2">
+                    {symptomData[selectedSymptomInfo.id].tips.map((tip, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span className="text-gray-700 dark:text-gray-300">{tip}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                    This information is for educational purposes. Consult your healthcare provider for personalized advice.
+                  </p>
+                </div>
+              </div>
+            )}
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   )
 }

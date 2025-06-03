@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import MainFeature from '../components/MainFeature'
 import ApperIcon from '../components/ApperIcon'
-
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
-
+  const navigate = useNavigate()
   const navItems = [
     { path: '/', label: 'Home', icon: 'Home' },
     { path: '/tracker', label: 'Tracker', icon: 'Calendar' },
@@ -22,12 +22,41 @@ const toggleDarkMode = () => {
     } else {
       document.documentElement.classList.remove('dark')
     }
-  }
+}
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen)
   }
 
+  const handleFeatureClick = (featureLabel) => {
+    switch (featureLabel) {
+      case 'Cycle Tracking':
+        navigate('/tracker')
+        toast.success('Opening cycle tracker...')
+        break
+      case 'Symptom Log':
+        navigate('/tracker')
+        toast.success('Opening symptom tracker...')
+        break
+      case 'Predictions':
+        navigate('/tracker')
+        toast.info('Opening cycle predictions...')
+        break
+      case 'Reminders':
+        navigate('/tracker')
+        toast.info('Opening reminder settings...')
+        break
+      case 'Analytics':
+        navigate('/insights')
+        toast.success('Opening analytics dashboard...')
+        break
+      case 'Privacy':
+        toast.info('Your data is encrypted and stored securely on your device. We never share personal health information.')
+        break
+      default:
+        toast.info('Feature coming soon!')
+    }
+  }
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -223,14 +252,23 @@ const toggleDarkMode = () => {
                 { icon: "Bell", label: "Reminders", color: "from-emerald-500 to-green-500" },
                 { icon: "BarChart3", label: "Analytics", color: "from-orange-500 to-amber-500" },
                 { icon: "Shield", label: "Privacy", color: "from-teal-500 to-cyan-500" }
-              ].map((feature, index) => (
+].map((feature, index) => (
                 <motion.div
                   key={feature.label}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className="flex flex-col items-center p-4 sm:p-6 cycle-card group"
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => handleFeatureClick(feature.label)}
+                  className="flex flex-col items-center p-4 sm:p-6 cycle-card group cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleFeatureClick(feature.label)
+                    }
+                  }}
                 >
                   <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 mb-3 sm:mb-4`}>
                     <ApperIcon name={feature.icon} className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
